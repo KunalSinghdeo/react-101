@@ -1,0 +1,22 @@
+{
+  "name": "react101",
+  "version": "1.0.0",
+  "description": "This is React101",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KunalSinghdeo/react-101.git"
+  },
+  "author": "Kunal Singhdeo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KunalSinghdeo/react-101/issues"
+  },
+  "homepage": "https://github.com/KunalSinghdeo/react-101#readme",
+  "devDependencies": {
+    "parcel": "^2.16.0"
+  }
+}
