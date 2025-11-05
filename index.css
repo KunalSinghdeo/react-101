@@ -63,3 +63,8 @@
 .filter-btn {
   margin: 10px;
 }
+
+.filter {
+  display: flex;
+  align-items: center;
+}

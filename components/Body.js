@@ -3,6 +3,10 @@ import ResCard from "./ResCard";
 import { ShimmerCard } from "./Shimmer";
 const Body = () => {
   const [listofRestaurants, setListofRestaurants] = useState([]);
+  const [filteredListofRestaurants, setFilteredListofRestaurants] = useState(
+    []
+  );
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -16,6 +20,19 @@ const Body = () => {
     setListofRestaurants(
       res?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    setFilteredListofRestaurants(
+      res?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
+  console.log("BOdy");
+
+  const searchButtonHandler = () => {
+    const searchedRestaurants = listofRestaurants.filter((restaurant) =>
+      restaurant?.info?.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    console.log("searchedRestaurants", searchedRestaurants);
+    setFilteredListofRestaurants(searchedRestaurants);
+    // setListofRestaurants(searchedRestaurants);
   };
 
   return listofRestaurants.length === 0 ? (
@@ -23,6 +40,15 @@ const Body = () => {
   ) : (
     <div className="body">
       <div className="filter">
+        <input
+          type="text"
+          className="search-input"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
+        ></input>
+        <button onClick={searchButtonHandler}>Search</button>
         <button
           className="filter-btn"
           onClick={() => console.log("Button Clicked")}
@@ -31,7 +57,7 @@ const Body = () => {
         </button>
       </div>
       <div className="res-Container">
-        {listofRestaurants.map((restaurant) => (
+        {filteredListofRestaurants.map((restaurant) => (
           <ResCard
             key={restaurant?.info?.id}
             cloudinaryImageId={restaurant?.info?.cloudinaryImageId}
